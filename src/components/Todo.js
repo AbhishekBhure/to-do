@@ -12,7 +12,7 @@ const Todo = ({ task, toggleComplete, deleteTodo, editTodo }) => {
       >
         {task.task}
       </p>
-      <div>
+      <div className="flex">
         <img
           src={edit}
           alt="edit"
