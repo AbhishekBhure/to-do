@@ -79,3 +79,8 @@ h1 {
   color: #c5aeff;
   text-decoration: line-through;
 }
+
+.svg{
+  width: 21px;
+  margin: 0px 5px;
+}
