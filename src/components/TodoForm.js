@@ -16,7 +16,10 @@ const TodoForm = ({ addTodo }) => {
   };
 
   return (
-    <form className="TodoForm" onSubmit={handleSubmit}>
+    <form
+      className="TodoForm flex justify-center align-middle my-6"
+      onSubmit={handleSubmit}
+    >
       <input
         type="text"
         className="todo-input"

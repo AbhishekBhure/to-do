@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import { v4 as uuidv4 } from "uuid";
@@ -6,7 +6,12 @@ import EditTodoForm from "./EditTodoForm";
 uuidv4();
 
 const TodoWrapper = () => {
-  const [todos, setTodos] = useState([]);
+  const initialTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  const [todos, setTodos] = useState(initialTodos);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (todo) => {
     setTodos([
@@ -45,22 +50,24 @@ const TodoWrapper = () => {
   };
 
   return (
-    <div className="TodoWrapper">
-      <h1>Get Things Done!!</h1>
-      <TodoForm addTodo={addTodo} />
-      {todos.map((todo, index) =>
-        todo.isEditing ? (
-          <EditTodoForm editTodo={editTask} task={todo} key={index} />
-        ) : (
-          <Todo
-            task={todo}
-            key={index}
-            toggleComplete={toggleComplete}
-            deleteTodo={deleteTodo}
-            editTodo={editTodo}
-          />
-        )
-      )}
+    <div className="flex justify-center align-middle">
+      <div className="TodoWrapper w-[500px] ">
+        <h1>Get Things Done!!</h1>
+        <TodoForm addTodo={addTodo} />
+        {todos.map((todo, index) =>
+          todo.isEditing ? (
+            <EditTodoForm editTodo={editTask} task={todo} key={index} />
+          ) : (
+            <Todo
+              task={todo}
+              key={index}
+              toggleComplete={toggleComplete}
+              deleteTodo={deleteTodo}
+              editTodo={editTodo}
+            />
+          )
+        )}
+      </div>
     </div>
   );
 };
