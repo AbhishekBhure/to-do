@@ -50,7 +50,7 @@ const TodoWrapper = () => {
   };
 
   return (
-    <div className="flex justify-center align-middle ">
+    <div className="flex justify-center items-center dark:bg-black transition-all ease-in-out ">
       <div className="TodoWrapper w-[500px] ">
         <h1>Get Things Done!!</h1>
         <TodoForm addTodo={addTodo} />
