@@ -4,7 +4,7 @@ import todo from "../svg/to-do.svg";
 
 const Navbar = () => {
   return (
-    <nav className="shadow-xl w-full flex justify-between px-7 py-5 ">
+    <nav className="shadow-xl w-full flex justify-between px-7 py-5 dark:bg-black fixed">
       <div className="flex justify-center items-center gap-2">
         <img src={todo} alt="todo" className="w-[30px] h-[30px]" />
         <h1 className="text-black font-bold dark:text-white">Agenda!!</h1>

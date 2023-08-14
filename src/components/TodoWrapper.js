@@ -50,8 +50,8 @@ const TodoWrapper = () => {
   };
 
   return (
-    <div className="flex justify-center items-center ">
-      <div className="TodoWrapper w-[500px] ">
+    <div className="flex justify-center items-center dark:bg-black h-[100vh]">
+      <div className="TodoWrapper w-[350px] md:w-[500px] ">
         <h1>Get Things Done!!</h1>
         <TodoForm addTodo={addTodo} />
         {todos.map((todo, index) =>
