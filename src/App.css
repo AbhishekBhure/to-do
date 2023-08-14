@@ -11,15 +11,17 @@
 
 #root{
   width: 100%;
+  height: 100%;
  
 }
 
 body {
-  background: #8758ff;
+  /* background: #8758ff; */
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100vh;
 }
 
 /* .App {
