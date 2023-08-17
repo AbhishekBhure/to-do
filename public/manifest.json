@@ -4,11 +4,13 @@
   "short_name": "Todo List",
   "name": "Todo List",
   "icons": {
+    "16":"to-do.svg",
+    "48":"to-do.svg",
     "128": "to-do.svg"
   },
   "start_url": ".",
   "display": "standalone",
-  "chrome_url_override":{
+  "chrome_url_overrides":{
     "newtab":"index.html"
   }
 }
