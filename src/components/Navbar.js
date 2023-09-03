@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="shadow-xl w-full flex justify-between px-7 py-5 dark:bg-black fixed z-10">
+    <nav className="shadow-xl w-full flex justify-between px-7 py-5 bg-white dark:bg-black fixed z-10">
       <div className="flex justify-center items-center gap-2">
         <img src={todo} alt="todo" className="w-[30px] h-[30px]" />
         <h1 className="text-black font-bold dark:text-white">
