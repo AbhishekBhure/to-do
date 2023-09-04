@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { signupFields } from "../contants/formFields";
 import Input from "./Input";
 import FormAction from "./FormAction";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const fields = signupFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [signupState, setSignupState] = useState(fieldsState);
 
   const handleSubmit = (e) => {
@@ -18,7 +22,15 @@ const Signup = () => {
       userInput[field.id] = signupState[field.id];
     });
 
-    console.log(userInput);
+    createUserWithEmailAndPassword(auth, userInput.email, userInput.password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // console.log(userInput.password);
   };
 
   const handleChange = (e) => {
