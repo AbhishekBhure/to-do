@@ -49,12 +49,14 @@ const Navbar = () => {
             <Link to="/">Logout</Link>
           </button>
         ) : (
-          <button
-            type="button"
-            className="rounded  dark:text-black transition-all ease-linear  px-5 font-bold py-2  bg-[#ffe100] text-black tracking-normal"
-          >
-            <Link to="/login"> Login </Link>
-          </button>
+          <Link to="/login">
+            <button
+              type="button"
+              className="rounded transition-all ease-linear  px-5 font-bold py-2  bg-[#ffe100] text-black tracking-normal"
+            >
+              Login
+            </button>
+          </Link>
         )}
 
         <Switcher />
