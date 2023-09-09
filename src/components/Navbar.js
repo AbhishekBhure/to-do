@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Switcher from "../Switcher";
 import todo from "../svg/to-do.svg";
-import { Link } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
+import { useAuth } from "./Context/AuthContext";
 
 const Navbar = () => {
   const [authUser, setAuthUser] = useState(null);
+  const navigate = useNavigate();
+
+  const { user, logOut } = useAuth();
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -22,12 +26,13 @@ const Navbar = () => {
     };
   }, []);
 
-  const handelLogout = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("user logged out");
-      })
-      .catch((error) => console.log(error));
+  const handelLogout = async () => {
+    try {
+      await logOut();
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -40,14 +45,17 @@ const Navbar = () => {
         </h1>
       </div>
       <div className="flex items-center justify-center gap-4">
+        {user ? <p className="dark:text-white">Hi, {user.email}</p> : ""}
         {authUser ? (
-          <button
-            onClick={handelLogout}
-            type="button"
-            className="rounded  dark:text-black transition-all ease-linear  px-5 font-bold py-2  bg-[#ffe100] text-black tracking-normal"
-          >
-            <Link to="/">Logout</Link>
-          </button>
+          <Link to="/">
+            <button
+              onClick={handelLogout}
+              type="button"
+              className="rounded  dark:text-black transition-all ease-linear  px-5 font-bold py-2  bg-[#ffe100] text-black tracking-normal"
+            >
+              Logout
+            </button>
+          </Link>
         ) : (
           <Link to="/login">
             <button
