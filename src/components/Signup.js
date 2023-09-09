@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { signupFields } from "../contants/formFields";
 import Input from "./Input";
 import FormAction from "./FormAction";
-import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./Context/AuthContext";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -13,23 +12,33 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 const Signup = () => {
   const navigate = useNavigate();
   const [signupState, setSignupState] = useState(fieldsState);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const { signUp } = useAuth();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setError("");
     let userInput = {};
     fields.forEach((field) => {
       userInput[field.id] = signupState[field.id];
     });
 
-    createUserWithEmailAndPassword(auth, userInput.email, userInput.password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      await signUp(userInput.email, userInput.password);
+      navigate("/login");
+    } catch (error) {
+      setError(error.message);
+    }
+
+    // createUserWithEmailAndPassword(auth, userInput.email, userInput.password)
+    //   .then((userCredential) => {
+    //     console.log(userCredential);
+    //     navigate("/login");
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
     // console.log(userInput.password);
   };
 
@@ -39,8 +48,9 @@ const Signup = () => {
 
   return (
     <div className="flex justify-center w-full h-[100vh] dark:bg-black">
+      {error && <p>{error}</p>}
       <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
-        <div className="">
+        <div>
           {fields.map((field) => (
             <Input
               key={field.id}
