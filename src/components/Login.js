@@ -24,7 +24,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     authenticateuser();
-    navigate("/");
+    navigate("/todo");
   };
 
   const authenticateuser = async () => {
@@ -49,7 +49,7 @@ export default function Login() {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/");
+      navigate("/todo");
     } catch (error) {
       setError(error.message);
     }
