@@ -11,9 +11,9 @@ import { AuthProvider } from "./components/Context/AuthContext";
 function App() {
   return (
     <AuthProvider>
-      <div>
+      <div className="w-full h-[100vh] dark:bg-[#242424] ">
         <Navbar />
-        <div className="w-full h-[100vh] dark:bg-black ">
+        <div>
           <Routes>
             <Route exacat path="/" element={<Home />} />
             <Route
