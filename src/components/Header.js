@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Header({ heading, paragraph, linkName, linkUrl }) {
   return (
-    <div className="md:pt-[100px] bg-white dark:bg-black">
+    <div className="md:pt-[100px] bg-white dark:bg-[#242424]">
       <div className="flex justify-center items-center">
         <img src="" alt="" className="h-14 w-14" />
       </div>

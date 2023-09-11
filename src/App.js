@@ -7,12 +7,14 @@ import SignupPage from "./pages/SignupPage";
 import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./components/Context/AuthContext";
+import Alert from "./components/alert/Alert";
 
 function App() {
   return (
     <AuthProvider>
       <div className="w-full h-[100vh] dark:bg-[#242424] ">
         <Navbar />
+        <Alert />
         <div>
           <Routes>
             <Route exacat path="/" element={<Home />} />

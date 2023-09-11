@@ -56,7 +56,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center w-full h-[100vh] bg-white dark:bg-black">
+    <div className="flex justify-center w-full h-[100vh] ">
       {error && <p>{error}</p>}
       <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
         <div className="-space-y-px">

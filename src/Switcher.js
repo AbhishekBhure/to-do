@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import useDarkTheme from "./Hooks/useDarkTheme";
+import { useAlert } from "./components/Context/AlertContext";
 
 export default function Switcher() {
+  const { showAlert } = useAlert();
   const [colorTheme, setTheme] = useDarkTheme();
   const [darkTheme, setDarkTheme] = useState(
     colorTheme === "#8758ff" ? true : false
@@ -11,6 +13,7 @@ export default function Switcher() {
   const toggleDarkTheme = (checked) => {
     setTheme(colorTheme);
     setDarkTheme(checked);
+    showAlert("Dark mode enabled", "success");
   };
 
   return (
