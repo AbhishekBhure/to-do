@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase";
 import { useAuth } from "./Context/AuthContext";
+import { useAlert } from "./Context/AlertContext";
 
 const Navbar = () => {
   const [authUser, setAuthUser] = useState(null);
   const navigate = useNavigate();
 
   const { user, logOut } = useAuth();
+  const { showAlert } = useAlert();
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -30,6 +32,7 @@ const Navbar = () => {
     try {
       await logOut();
       navigate("/login");
+      showAlert("Successfully LogedOut", "success");
     } catch (error) {
       console.log(error);
     }
