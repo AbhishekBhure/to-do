@@ -11,7 +11,7 @@ const Alert = (props) => {
     if (alert) {
       const alertTimer = setTimeout(() => {
         hideAlert();
-      }, 5000);
+      }, 4000);
 
       setTimer(alertTimer);
     }
@@ -20,7 +20,7 @@ const Alert = (props) => {
         clearTimeout(timer);
       }
     };
-  }, [alert, timer, hideAlert]);
+  }, [hideAlert]);
 
   const handleCancle = () => {
     console.log("cancle");
