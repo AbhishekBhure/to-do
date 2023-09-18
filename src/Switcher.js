@@ -13,7 +13,10 @@ export default function Switcher() {
   const toggleDarkTheme = (checked) => {
     setTheme(colorTheme);
     setDarkTheme(checked);
-    showAlert("Dark mode enabled", "success");
+    showAlert(
+      `Switched to ${colorTheme === "#8758ff" ? "light" : "Dark"} mode`,
+      "success"
+    );
   };
 
   return (
