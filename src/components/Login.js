@@ -5,12 +5,14 @@ import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import { useAuth } from "./Context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAlert } from "./Context/AlertContext";
 
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
+  const { showAlert } = useAlert();
   const [loginState, setLoginState] = useState(fieldsState);
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -25,6 +27,7 @@ export default function Login() {
     e.preventDefault();
     authenticateuser();
     navigate("/todo");
+    showAlert("Successfully loggedIn", "success");
   };
 
   const authenticateuser = async () => {
@@ -56,7 +59,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center w-full h-[100vh] ">
+    <div className="flex justify-center w-full ">
       {error && <p>{error}</p>}
       <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
         <div className="-space-y-px">
