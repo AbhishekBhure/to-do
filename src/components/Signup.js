@@ -4,6 +4,7 @@ import Input from "./Input";
 import FormAction from "./FormAction";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
+import { useAlert } from "./Context/AlertContext";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -15,6 +16,7 @@ const Signup = () => {
   const [error, setError] = useState("");
 
   const { signUp } = useAuth();
+  const { showAlert } = useAlert();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const Signup = () => {
     try {
       await signUp(userInput.email, userInput.password);
       navigate("/login");
+      showAlert("Successfully SignedUp", "success");
     } catch (error) {
       setError(error.message);
     }
@@ -47,7 +50,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center w-full h-[100vh] ">
+    <div className="flex justify-center w-full ">
       {error && <p>{error}</p>}
       <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
         <div>
