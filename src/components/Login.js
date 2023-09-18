@@ -53,6 +53,7 @@ export default function Login() {
     try {
       await googleSignIn();
       navigate("/todo");
+      showAlert("Successfully loggedIn", "success");
     } catch (error) {
       setError(error.message);
     }
